@@ -6,7 +6,7 @@
 /*
 Plugin Name: Delta 404
 Plugin URI: https://deltasystemsgroup.com
-Description: A plugin to get 404 data out of the Redirection plugin.
+Description: A simple plugin to get 404 data out of the Redirection plugin.
 Author: Delta Systems Group
 Version: 1.0
 */
@@ -25,14 +25,7 @@ function add_action_links ( $links ) {
 add_action( 'wp_ajax_delta404', function () {
     global $wpdb;
 
-    $rows  = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}redirection_404" );
-    $items = array();
-    if ( count( $rows ) > 0 ) {
-        foreach ( $rows as $row ) {
-            $items[] = new Red_404( $row );
-        }
-    }
-
+    $items  = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}redirection_404" );
 
     header( 'Content-type: text/xml; charset='.get_option( 'blog_charset' ), true );
     echo '<?xml version="1.0" encoding="'.get_option( 'blog_charset' ).'"?'.">\r\n";
