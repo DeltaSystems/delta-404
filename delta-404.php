@@ -37,9 +37,10 @@ function delta404() {
                  xmlns:content="http://purl.org/rss/1.0/modules/content/"
                  xmlns:wfw="http://wellformedweb.org/CommentAPI/"
                  xmlns:dc="http://purl.org/dc/elements/1.1/">
-                <items>
+                <channel>
                     <?php foreach ( (array) $items as $item ) : ?>
                         <item>
+                            <title><?php echo esc_html( $item->url ); ?></title>
                             <id><?php echo esc_html( $item->id ); ?></id>
                             <created><?php echo date( 'D, d M Y H:i:s +0000', $item->created ); ?></created>
                             <url><?php echo esc_html( $item->url ); ?></url>
@@ -48,7 +49,7 @@ function delta404() {
                             <ip><?php echo esc_html( $item->ip ); ?></ip>
                         </item>
                     <?php endforeach; ?>
-                </items>
+                </channel>
             </rss>
             <?php
             die;
@@ -62,6 +63,6 @@ function delta404() {
 
 function delta404GetToken() {
     $options = get_option( 'redirection_options' );
-    
+
     return $options['token'];
 }
