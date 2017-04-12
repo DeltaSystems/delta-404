@@ -38,7 +38,7 @@ add_action( 'wp_ajax_delta404', function () {
             <?php foreach ( (array) $items as $item ) : ?>
 				<item>
 					<id><?php echo esc_html( $item->id ); ?></id>
-					<created><?php echo date( 'D, d M Y H:i:s +0000', $item->created ); ?></created>
+					<created><?php echo esc_html( $item->created ); ?></created>
 					<url><?php echo esc_html( $item->url ); ?></url>
 					<agent><?php echo esc_html( $item->agent ); ?></agent>
 					<referrer><?php echo esc_html( $item->referrer ); ?></referrer>
